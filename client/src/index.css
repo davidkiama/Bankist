@@ -14,3 +14,36 @@ html {
 body {
   font-size: 1.6rem;
 }
+
+:root {
+  --color-grey: #f3f3f3;
+  --color-white: #fff;
+  --color-green-1: #9be15d;
+  --color-green-2: #39b385;
+}
+
+#root {
+  background-color: var(--color-grey);
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Components */
+
+.heading-1 {
+  font-size: 4rem;
+}
+
+.btn {
+  padding: 1rem;
+  cursor: pointer;
+  border: none;
+  font-size: 1.9rem;
+  background-color: var(--color-green-1);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--color-green-2);
+}

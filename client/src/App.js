@@ -1,7 +1,17 @@
 import React from "react";
 
+// custom components
+import Header from "./components/Header/Header";
+
+import Signup from "./components/Auth/Signup";
+
 function App() {
-  return <h1>App</h1>;
+  return (
+    <>
+      <Header />
+      <Signup />
+    </>
+  );
 }
 
 export default App;

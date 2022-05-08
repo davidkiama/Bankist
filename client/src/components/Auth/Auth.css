@@ -1,0 +1,74 @@
+.box {
+  width: 40rem;
+  margin: auto;
+  padding: 1.6rem;
+  background-color: var(--color-white);
+}
+
+.box--1 {
+  width: 100%;
+}
+.box__avatar {
+  margin: auto;
+  background-color: var(--color-green-1) !important;
+}
+
+.box__heading {
+  font-size: 2rem;
+  margin: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  position: relative;
+
+  background-color: var(--color-white);
+}
+
+.form--page {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: var(--color-white);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.page1 {
+  transform: translateX(-100%);
+}
+
+.page2 {
+  transform: translateX(100%);
+}
+
+.active-form {
+  transform: translateX(0);
+}
+
+.box label,
+.box input {
+  font-size: 1.7rem;
+}
+
+.form__btn {
+  margin: 2rem auto;
+}
+
+.switch--prev {
+  cursor: pointer;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  padding: 1rem;
+
+  transition: all 0.2s;
+}
+
+.switch--prev:hover {
+  background-color: var(--color-grey);
+}
