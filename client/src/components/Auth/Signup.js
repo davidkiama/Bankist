@@ -24,7 +24,7 @@ function Signup() {
         <Grid container spacing={2} className={`form--page  page1 ${page1 && "active-form "}`}>
           <Input name="firstName" label="First Name" half autoFocus handleChange={handleChange} />
           <Input name="lastName" label="Last Name" half handleChange={handleChange} />
-          <Input name="email" label="Email" handleChange={handleChange} />
+
           <Input name="password" label="Password" handleChange={handleChange} />
           <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} />
 
@@ -34,6 +34,7 @@ function Signup() {
         </Grid>
 
         <Grid container spacing={2} className={`form--page page2 ${!page1 && "active-form "}`}>
+          <Input name="email" label="Email" handleChange={handleChange} />
           <Input name="telphone" label="Telephone" handleChange={handleChange} />
           <Input name="IdNumber" label="Id Number" handleChange={handleChange} />
 
