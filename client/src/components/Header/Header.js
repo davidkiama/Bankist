@@ -12,6 +12,10 @@ function Header() {
       </div>
 
       <div className="header__btns">
+        <Link to="dashboard" className="btn header__btn">
+          Dashboard
+        </Link>
+
         <Link to="signin" className="btn header__btn">
           Login
         </Link>
