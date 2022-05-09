@@ -4,12 +4,16 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import authRoutes from "./routes/auth.js";
+
 const app = express();
 dotenv.config();
 
 // middlewares
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(cors());
+
+app.use("/auth", authRoutes);
 
 // test if server is running and send a response
 app.get("/", (req, res) => {
