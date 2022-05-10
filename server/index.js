@@ -15,11 +15,6 @@ app.use(cors());
 
 app.use("/auth", authRoutes);
 
-// test if server is running and send a response
-app.get("/", (req, res) => {
-  res.send("Server is running");
-});
-
 // connect to DB
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
