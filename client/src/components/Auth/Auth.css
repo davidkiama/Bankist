@@ -11,6 +11,7 @@
 }
 .box__avatar {
   margin: auto;
+  color: inherit !important;
   background-color: var(--color-green-1) !important;
 }
 
@@ -42,16 +43,19 @@
 
 .page1 {
   transform: translateX(-110%);
+  visibility: hidden;
   opacity: 0;
 }
 
 .page2 {
   transform: translateX(110%);
+  visibility: hidden;
   opacity: 0;
 }
 
 .active-form {
   transform: translateX(0);
+  visibility: visible;
   opacity: 1;
 }
 
