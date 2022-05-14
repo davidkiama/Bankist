@@ -48,12 +48,16 @@ export const signUp = async (req, res) => {
 };
 
 export const signIn = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, idNumber } = req.body;
 
   try {
     // Check if email exists
     const existingUser = await User.findOne({ email });
     if (!existingUser) return res.status(409).json({ message: "User  doesn't exists." });
+
+    // check if id is for the account entered
+
+    if (existingUser.idNumber !== idNumber) return res.status(409).json({ message: "Invalid Id Number." });
 
     // Check if password mathces the email entered
     const correctPassword = await bycrypt.compare(password, existingUser.password);

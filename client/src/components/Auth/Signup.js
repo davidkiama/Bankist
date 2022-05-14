@@ -21,6 +21,9 @@ function Signup() {
   const [page1, setPage1] = useState(true);
   const [userData, setUserData] = useState(initialState);
 
+  const [statusCode, setStatusCode] = useState("");
+  const [statusMsg, setStatusMsg] = useState("");
+
   const dispatch = useDispatch();
 
   const switchPage = () => {
@@ -33,9 +36,14 @@ function Signup() {
 
   const clearInputs = () => setUserData(initialState);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signUp(userData));
+    const { status, message } = await dispatch(signUp(userData));
+
+    // updating the message string to be displayed
+    setStatusCode(status);
+    setStatusMsg(message);
+
     clearInputs();
   };
 
@@ -45,6 +53,10 @@ function Signup() {
         <LockOutlinedIcon />
       </Avatar>
       <h4 className="heading-4 box__heading">Signup</h4>
+
+      {/* check if status code is ok and display a msg in green */}
+
+      <span className={`${statusCode[0] == "2" ? "ok" : "error"} status-msg`}>Successfully </span>
 
       <form className="form auth__form" onSubmit={handleSubmit}>
         <Grid container spacing={2} className={`form--page  page1 ${page1 && "active-form "}`}>

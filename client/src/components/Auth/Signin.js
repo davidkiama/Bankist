@@ -10,6 +10,8 @@ import { signIn } from "../../actions/auth";
 const initialState = { email: "", idNumber: "", password: "" };
 function Signin() {
   const [userData, setUserData] = useState(initialState);
+  const [statusCode, setStatusCode] = useState("");
+  const [statusMsg, setStatusMsg] = useState("");
 
   const dispatch = useDispatch();
 
@@ -19,9 +21,14 @@ function Signin() {
 
   const clearInputs = () => setUserData(initialState);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signIn(userData));
+    const { status, message } = await dispatch(signIn(userData));
+
+    // updating the message string to be displayed
+    setStatusCode(status);
+    setStatusMsg(message);
+
     clearInputs();
   };
 
@@ -31,6 +38,8 @@ function Signin() {
         <LockOutlinedIcon />
       </Avatar>
       <h4 className="heading-4 box__heading">Signin</h4>
+
+      <span className={`${statusCode[0] == "2" ? "ok" : "error"} status-msg`}>Successfully </span>
 
       <form className="form auth__form" onSubmit={handleSubmit}>
         <Grid container spacing={2} className="form--page  page1  active-form ">

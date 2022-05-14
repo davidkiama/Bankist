@@ -104,3 +104,11 @@ This is the class that is added or removed from the page1 and page2 elements.
 
 
 */
+
+.status-msg {
+  display: block;
+  margin: auto;
+  text-align: center;
+  background-color: aqua;
+  padding: 0.5rem;
+}

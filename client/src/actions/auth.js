@@ -5,9 +5,10 @@ export const signUp = (user) => async (dispatch) => {
     const { data } = await api.signUp(user);
 
     dispatch({ type: "SIGNUP", data });
+    return { status: 201, message: "Account created successfully" };
   } catch (error) {
-    console.log("***************************************");
-    console.log(error);
+    const { status, data } = error.response;
+    return { status: status, message: data.message };
   }
 };
 
@@ -16,8 +17,9 @@ export const signIn = (user) => async (dispatch) => {
     const { data } = await api.signIn(user);
 
     dispatch({ type: "SIGNIN", data });
+    return { status: 200, message: "Logged in successfully." };
   } catch (error) {
-    console.log("***************************************");
-    console.log(error);
+    const { status, data } = error.response;
+    return { status: status, message: data.message };
   }
 };
