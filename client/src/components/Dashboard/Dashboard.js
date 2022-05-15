@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //custom components
 
@@ -10,10 +10,11 @@ import WithdrawForm from "../Forms/WithdrawForm";
 
 import "./Dashboard.css";
 function Dashboard() {
+  const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem("profile")));
   return (
     <main className="dashboard">
       <div className="dashboard__header">
-        <h4>Welcome back, David</h4>
+        <h4>Welcome back, {userProfile?.result?.firstName} </h4>
         <span>Kes 37,000/=</span>
       </div>
 
