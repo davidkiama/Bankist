@@ -1,4 +1,4 @@
-.form {
+.form--trx {
   width: 22rem;
   margin: 0 auto;
   display: flex;
@@ -11,12 +11,12 @@
   font-size: 2.4rem;
 }
 
-.form input,
-.form label {
+.form--trx input,
+.form--trx label {
   font-size: 2rem;
 }
 
-.form button {
+.form--trx button {
   width: fit-content;
   margin: 0 auto;
 }

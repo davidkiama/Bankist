@@ -14,3 +14,7 @@ API.interceptors.request.use((req) => {
 // Auth functions
 export const signUp = (user) => API.post("auth/signup", user);
 export const signIn = (user) => API.post("auth/signin", user);
+
+// Transction functions
+export const deposit = (amount) => API.post("transaction/deposit", amount);
+export const withdraw = (amount) => API.post("tranasaction/withdraw", amount);

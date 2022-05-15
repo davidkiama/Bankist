@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.js";
+import transactionRoutes from "./routes/transactions.js";
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/auth", authRoutes);
+app.use("/transaction", transactionRoutes);
 
 // connect to DB
 

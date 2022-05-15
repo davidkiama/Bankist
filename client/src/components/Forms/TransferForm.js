@@ -3,7 +3,7 @@ import { TextField } from "@mui/material/";
 
 function TransferForm() {
   return (
-    <form className="form">
+    <form className="form--trx">
       <h4 className="form__heading">Transfer form</h4>
       <TextField className="form__input" name="email" label="Email" variant="filled" type="email" />
       <TextField className="form__input" name="amount" label="Amount" variant="filled" type="number" />
