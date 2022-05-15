@@ -109,6 +109,14 @@ This is the class that is added or removed from the page1 and page2 elements.
   display: block;
   margin: auto;
   text-align: center;
-  background-color: aqua;
+}
+
+.status--error {
+  background-color: rgba(255, 0, 0, 0.692);
   padding: 0.5rem;
+}
+
+.status--ok {
+  padding: 0.5rem;
+  background-color: rgba(0, 128, 0, 0.692);
 }

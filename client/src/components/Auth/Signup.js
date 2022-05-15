@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Avatar } from "@mui/material/";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
 import "./Auth.css";
@@ -25,6 +26,7 @@ function Signup() {
   const [statusMsg, setStatusMsg] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const switchPage = () => {
     setPage1((page1) => !page1);
@@ -44,6 +46,8 @@ function Signup() {
     setStatusCode(status);
     setStatusMsg(message);
 
+    if (status === 200) navigate("/signin");
+
     clearInputs();
   };
 
@@ -56,7 +60,15 @@ function Signup() {
 
       {/* check if status code is ok and display a msg in green */}
 
-      <span className={`${statusCode[0] == "2" ? "ok" : "error"} status-msg`}>Successfully </span>
+      {statusMsg ? (
+        <span
+          className={`
+          ${statusCode === 200 && "status--ok"}  
+          ${statusCode !== 200 && "status--error"} status-msg`}
+        >
+          {statusMsg}
+        </span>
+      ) : null}
 
       <form className="form auth__form" onSubmit={handleSubmit}>
         <Grid container spacing={2} className={`form--page  page1 ${page1 && "active-form "}`}>

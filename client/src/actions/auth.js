@@ -5,7 +5,7 @@ export const signUp = (user) => async (dispatch) => {
     const { data } = await api.signUp(user);
 
     dispatch({ type: "SIGNUP", data });
-    return { status: 201, message: "Account created successfully" };
+    return { status: 200, message: "Account created successfully" };
   } catch (error) {
     const { status, data } = error.response;
     return { status: status, message: data.message };
