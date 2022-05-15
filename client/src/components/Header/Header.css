@@ -10,6 +10,31 @@
   font-family: inherit;
 }
 
+.header__btns {
+  display: flex;
+  align-items: center;
+}
+
 .header__btn {
   margin-right: 2rem;
+}
+
+.header__btns .btn--logout {
+  display: flex;
+  align-items: center;
+
+  color: var(--color-white);
+  background-color: var(--color-black-1);
+  text-decoration: none;
+  transition: all 0.4s;
+}
+
+.header__btns .btn--logout img {
+  height: 2.3rem;
+  margin-right: 0.5rem;
+}
+
+.header__btns .btn--logout:hover {
+  color: rgba(255, 0, 0, 0.85);
+  background-color: var(--color-black-2);
 }

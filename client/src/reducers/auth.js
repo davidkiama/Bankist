@@ -8,6 +8,9 @@ export default (userState = { authData: null }, action) => {
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
       return { ...userState, authData: action.data };
 
+    case "LOGOUT":
+      localStorage.clear();
+      return { ...userState, authData: null };
     default:
       return userState;
   }

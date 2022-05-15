@@ -7,7 +7,7 @@ export const signUp = (user) => async (dispatch) => {
     dispatch({ type: "SIGNUP", data });
     return { status: 200, message: "Account created successfully" };
   } catch (error) {
-    const { status, data } = error.response;
+    const { status, data } = await error.response;
     return { status: status, message: data.message };
   }
 };
@@ -19,7 +19,7 @@ export const signIn = (user) => async (dispatch) => {
     dispatch({ type: "SIGNIN", data });
     return { status: 200, message: "Logged in successfully." };
   } catch (error) {
-    const { status, data } = error.response;
+    const { status, data } = await error.response;
     return { status: status, message: data.message };
   }
 };
