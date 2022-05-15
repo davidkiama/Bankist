@@ -23,9 +23,9 @@ function Dashboard() {
 
         <div className="dashboard__forms">
           <DepositForm />
-          <LoanForm />
-          <TransferForm />
           <WithdrawForm />
+          <TransferForm />
+          <LoanForm />
         </div>
       </div>
     </main>

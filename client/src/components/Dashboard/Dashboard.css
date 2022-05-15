@@ -17,3 +17,19 @@
 .dashboard__header span {
   font-size: 3rem;
 }
+
+.dashboard__main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dashboard__forms {
+  width: 50%;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 4rem;
+}

@@ -5,9 +5,10 @@ import Transaction from "./Transaction/Transaction";
 function Transactions() {
   return (
     <>
-      <div>Transactions</div>
-
-      <Transaction />
+      <div>
+        Transactions
+        <Transaction />
+      </div>
     </>
   );
 }
