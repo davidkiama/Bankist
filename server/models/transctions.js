@@ -22,7 +22,7 @@ const WithdrawSchema = new mongoose.Schema({
 const TransferSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   fee: { type: Number, required: true },
-  initiator: { type: Number, required: true },
+  initiator: { type: String, required: true },
   receiver: { type: String, required: true },
   createdAt: {
     type: Date,

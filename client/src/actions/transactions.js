@@ -21,3 +21,14 @@ export const withdraw = (amount) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const transfer = (body) => async (dispatch) => {
+  try {
+    const { data } = await api.transfer(body);
+
+    console.log(data);
+  } catch (error) {
+    console.log("**********************************************");
+    console.log(error);
+  }
+};

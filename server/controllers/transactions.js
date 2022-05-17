@@ -4,7 +4,7 @@ import User from "../models/user.js";
 export const deposit = async (req, res) => {
   const { amount } = req.body;
 
-  if (!req.body) return res.status(401).json({ message: "Unauthorized" });
+  if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
 
   //Get user so as to add new trx
   const user = await User.findById(req.userId);
@@ -17,7 +17,7 @@ export const deposit = async (req, res) => {
     //add a transaction attribute
 
     const transaction = newDepo.toObject();
-    user.transactions.push({ ...transaction, trxType: "deposit" });
+    user.transactions.push({ ...transaction, trxType: "Deposit" });
     await user.save();
 
     return res.status(201).json(newDepo);
@@ -45,11 +45,47 @@ export const withdraw = async (req, res) => {
     await newWithdrawal.save();
 
     const transaction = newWithdrawal.toObject();
-    user.transactions.push({ ...transaction, trxType: "withdrawal" });
+    user.transactions.push({ ...transaction, trxType: "Withdrawal" });
     await user.save();
-    console.log(user.transactions);
 
     return res.status(201).json(newWithdrawal);
+  } catch (error) {
+    return res.status(409).json({ message: error });
+  }
+};
+
+export const transfer = async (req, res) => {
+  let { amount, email } = req.body;
+
+  // Check if user is logged in and valid
+  if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
+  const user = await User.findById(req.userId);
+  if (!user) return res.status(401).json({ message: "User does not exist." });
+
+  // check if we have user with that email
+  const receiver = await User.findOne({ email });
+  if (!receiver) return res.status(404).json({ message: "No user with that email" });
+
+  amount = -amount;
+  const fee = amount * 0.1;
+  const initiator = user.email;
+
+  const newTransfer = new Transfer({ amount, fee, initiator, receiver: receiver.email });
+
+  try {
+    await newTransfer.save();
+
+    // Add trx to the initiator
+    const transaction = newTransfer.toObject();
+    user.transactions.push({ ...transaction, trxType: "Transfer" });
+    await user.save();
+
+    // Add trx to the receiver
+    receiver.transactions.push({ ...transaction, amount: -amount, fee: 0, trxType: "Receive" });
+    await receiver.save();
+    console.log(receiver.transactions);
+
+    return res.status(201).json(newTransfer);
   } catch (error) {
     return res.status(409).json({ message: error });
   }
