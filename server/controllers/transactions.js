@@ -14,7 +14,10 @@ export const deposit = async (req, res) => {
   try {
     await newDepo.save();
 
-    user.transactions.push({ deposit: newDepo });
+    //add a transaction attribute
+
+    const transaction = newDepo.toObject();
+    user.transactions.push({ ...transaction, trxType: "deposit" });
     await user.save();
 
     return res.status(201).json(newDepo);
@@ -24,7 +27,7 @@ export const deposit = async (req, res) => {
 };
 
 export const withdraw = async (req, res) => {
-  const { amount } = req.body;
+  let { amount } = req.body;
 
   if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
 
@@ -32,6 +35,8 @@ export const withdraw = async (req, res) => {
   const user = await User.findById(req.userId);
   if (!user) return res.status(401).json({ message: "User does not exist" });
 
+  //Make the amount negative since its a withdrawal
+  amount = -amount;
   const destination = user.telephone;
   const fee = amount * 0.1;
 
@@ -39,7 +44,12 @@ export const withdraw = async (req, res) => {
   try {
     await newWithdrawal.save();
 
-    return res.status(201).json(newDepo);
+    const transaction = newWithdrawal.toObject();
+    user.transactions.push({ ...transaction, trxType: "withdrawal" });
+    await user.save();
+    console.log(user.transactions);
+
+    return res.status(201).json(newWithdrawal);
   } catch (error) {
     return res.status(409).json({ message: error });
   }
