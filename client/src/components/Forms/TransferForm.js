@@ -29,7 +29,7 @@ function TransferForm() {
         name="email"
         label="Email"
         variant="filled"
-        type="text"
+        type="email"
         required
         onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
       />

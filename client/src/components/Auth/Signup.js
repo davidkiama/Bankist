@@ -72,11 +72,16 @@ function Signup() {
 
       <form className="form auth__form" onSubmit={handleSubmit}>
         <Grid container spacing={2} className={`form--page  page1 ${page1 && "active-form "}`}>
-          <Input name="firstName" label="First Name" half autoFocus handleChange={handleChange} />
-          <Input name="lastName" label="Last Name" half handleChange={handleChange} />
+          <Input name="firstName" type="text" label="First Name" half autoFocus handleChange={handleChange} />
+          <Input name="lastName" type="text" label="Last Name" half handleChange={handleChange} />
 
-          <Input name="password" label="Password" handleChange={handleChange} />
-          <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} />
+          <Input name="password" type="password" label="Password" handleChange={handleChange} />
+          <Input
+            name="confirmPassword"
+            type="password"
+            label="Confirm Password"
+            handleChange={handleChange}
+          />
 
           <span className="btn form__btn witch switch--next" onClick={switchPage}>
             Next &raquo;
@@ -84,9 +89,9 @@ function Signup() {
         </Grid>
 
         <Grid container spacing={2} className={`form--page page2 ${!page1 && "active-form "}`}>
-          <Input name="email" label="Email" handleChange={handleChange} />
-          <Input name="telephone" label="Telephone" handleChange={handleChange} />
-          <Input name="idNumber" label="Id Number" handleChange={handleChange} />
+          <Input name="email" type="email" label="Email" handleChange={handleChange} />
+          <Input name="telephone" type="text" label="Telephone" handleChange={handleChange} />
+          <Input name="idNumber" type="text" label="Id Number" handleChange={handleChange} />
 
           <button type="submit" className="btn form__btn">
             Signup
