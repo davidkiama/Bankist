@@ -32,3 +32,13 @@ export const transfer = (body) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const loan = (amount) => async (dispatch) => {
+  try {
+    const { data } = await api.loan(amount);
+
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
