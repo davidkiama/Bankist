@@ -131,3 +131,17 @@ export const loan = async (req, res) => {
     return res.status(409).json({ message: error });
   }
 };
+
+export const dashboardInfo = async (req, res) => {
+  if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+    //get user sending the request
+    const user = await User.findById(req.userId);
+    if (!user) return res.status(401).json({ message: "User does not exist" });
+
+    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
+  } catch (error) {
+    return res.status(409).json({ message: error });
+  }
+};

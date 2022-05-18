@@ -44,3 +44,15 @@ export const loan = (amount) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const dashboard = () => async (dispatch) => {
+  try {
+    const { data } = await api.dashboardInfo();
+
+    // update userAccount state when one logs in
+    dispatch({ type: "DASHBOARD", data });
+  } catch (error) {
+    console.log("**********************************************");
+    console.log(error);
+  }
+};

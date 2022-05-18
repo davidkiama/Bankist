@@ -7,7 +7,7 @@ export default (userAccount = { currentBalance: 0, transactions: [] }, action) =
         transactions: action.data.transactions,
       };
 
-    case "LOGIN_STATE":
+    case "DASHBOARD":
       return {
         ...userAccount,
         currentBalance: action.data.currentBalance,

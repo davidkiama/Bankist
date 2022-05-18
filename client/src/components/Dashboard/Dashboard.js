@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 //custom components
 
@@ -9,11 +9,17 @@ import LoanForm from "../Forms/LoanForm";
 import TransferForm from "../Forms/TransferForm";
 import WithdrawForm from "../Forms/WithdrawForm";
 
+import { dashboard } from "../../actions/transactions";
+
 import "./Dashboard.css";
 function Dashboard() {
   const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem("profile")));
 
   const userAccount = useSelector((state) => state.userAccount);
+
+  const dispatch = useDispatch();
+
+  dispatch(dashboard());
 
   return (
     <main className="dashboard">
