@@ -14,7 +14,7 @@ function WithdrawForm() {
     e.preventDefault();
 
     dispatch(withdraw(formData));
-    console.log(formData);
+
     clearInputs();
   };
 

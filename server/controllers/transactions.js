@@ -18,6 +18,7 @@ export const deposit = async (req, res) => {
 
     const transaction = newDepo.toObject();
     user.transactions.push({ ...transaction, trxType: "Deposit" });
+    user.currentBalance += amount; //Updating the user's balance
     await user.save();
 
     return res.status(201).json(newDepo);
@@ -46,6 +47,7 @@ export const withdraw = async (req, res) => {
 
     const transaction = newWithdrawal.toObject();
     user.transactions.push({ ...transaction, trxType: "Withdrawal" });
+    user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
 
     return res.status(201).json(newWithdrawal);
@@ -66,6 +68,10 @@ export const transfer = async (req, res) => {
   const receiver = await User.findOne({ email });
   if (!receiver) return res.status(404).json({ message: "No user with that email" });
 
+  //ensure amount + fee requested is less than current balance
+  if (amount * 1.1 > user.currentBalance)
+    return res.status(409).json({ message: "You don not have enough balance" });
+
   amount = -amount; //negate figure since its a transfer
   const fee = amount * 0.1;
   const initiator = user.email;
@@ -78,10 +84,13 @@ export const transfer = async (req, res) => {
     // Add trx to the initiator/sender
     const transaction = newTransfer.toObject();
     user.transactions.push({ ...transaction, trxType: "Transfer" });
+    user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
+    console.log(user.currentBalance);
 
     // Add trx to the receiver
     receiver.transactions.push({ ...transaction, amount: -amount, fee: 0, trxType: "Receive" });
+    receiver.currentBalance = receiver.currentBalance + -amount;
     await receiver.save();
 
     return res.status(201).json(newTransfer);
@@ -113,10 +122,9 @@ export const loan = async (req, res) => {
   try {
     await newLoan.save();
 
-    console.log(newLoan);
-
     const transaction = newLoan.toObject();
     user.transactions.push({ ...transaction, trxType: "Loan" });
+    user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
 
     return res.status(201).json(newLoan);
