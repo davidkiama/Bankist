@@ -15,7 +15,7 @@ import "./Dashboard.css";
 function Dashboard() {
   const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  const userAccount = useSelector((state) => state.userAccount);
+  const currentBalance = useSelector((state) => state.userAccount.currentBalance);
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ function Dashboard() {
     <main className="dashboard">
       <div className="dashboard__header">
         <h4>Welcome back, {userProfile?.result?.firstName} </h4>
-        <span>Kes {userAccount.currentBalance} /=</span>
+        <span>Kes {currentBalance} /=</span>
       </div>
 
       <div className="dashboard__main">
