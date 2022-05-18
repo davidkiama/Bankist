@@ -2,7 +2,9 @@ import * as api from "../api";
 
 export const deposit = (amount) => async (dispatch) => {
   try {
-    const data = await api.deposit(amount);
+    const { data } = await api.deposit(amount);
+
+    dispatch({ type: "DEPOSIT", data });
 
     console.log(data);
   } catch (error) {

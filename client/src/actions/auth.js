@@ -17,6 +17,13 @@ export const signIn = (user) => async (dispatch) => {
     const { data } = await api.signIn(user);
 
     dispatch({ type: "SIGNIN", data });
+
+    // update userAccount state when one logs in
+    dispatch({
+      type: "LOGIN_STATE",
+      data: { currentBalance: data.result.currentBalance, transactions: data.result.transactions },
+    });
+
     return { status: 200, message: "Logged in successfully." };
   } catch (error) {
     const { status, data } = await error.response;

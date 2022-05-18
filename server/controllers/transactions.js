@@ -21,7 +21,7 @@ export const deposit = async (req, res) => {
     user.currentBalance += amount; //Updating the user's balance
     await user.save();
 
-    return res.status(201).json(newDepo);
+    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
@@ -50,7 +50,7 @@ export const withdraw = async (req, res) => {
     user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
 
-    return res.status(201).json(newWithdrawal);
+    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
@@ -92,7 +92,7 @@ export const transfer = async (req, res) => {
     receiver.currentBalance = receiver.currentBalance + -amount;
     await receiver.save();
 
-    return res.status(201).json(newTransfer);
+    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
@@ -126,7 +126,7 @@ export const loan = async (req, res) => {
     user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
 
-    return res.status(201).json(newLoan);
+    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
