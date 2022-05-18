@@ -86,7 +86,6 @@ export const transfer = async (req, res) => {
     user.transactions.push({ ...transaction, trxType: "Transfer" });
     user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
-    console.log(user.currentBalance);
 
     // Add trx to the receiver
     receiver.transactions.push({ ...transaction, amount: -amount, fee: 0, trxType: "Receive" });
