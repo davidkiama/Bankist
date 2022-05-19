@@ -23,6 +23,8 @@ body {
   --color-green-1: #9be15d;
   --color-green-2: #39b385;
 
+  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+
   --color-black-1: rgb(32, 33, 33);
   --color-black-2: rgba(32, 33, 33, 0.902);
 }
