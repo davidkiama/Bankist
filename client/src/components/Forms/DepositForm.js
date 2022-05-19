@@ -21,7 +21,7 @@ function DepositForm() {
     clearInputs();
   };
   return (
-    <form className="form--trx" onSubmit={handleSubmit}>
+    <form className="form--trx  form--trx--deposit" onSubmit={handleSubmit}>
       <h4 className="form__heading">Deposit form</h4>
       <TextField
         className="form__input"

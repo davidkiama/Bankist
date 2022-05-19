@@ -1,9 +1,14 @@
 .form--trx {
-  width: 22rem;
+  background-color: #fff; /* #change later; */
+  width: 27rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   row-gap: 2rem;
+
+  padding: 1rem 2rem;
+  height: 29rem;
 }
 
 .form__heading {

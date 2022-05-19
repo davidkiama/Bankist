@@ -23,7 +23,7 @@ function WithdrawForm() {
   };
 
   return (
-    <form className="form--trx" onSubmit={handleSubmit}>
+    <form className="form--trx form--trx--withdraw" onSubmit={handleSubmit}>
       <h4 className="form__heading">Withdraw form</h4>
       <TextField
         className="form__input"

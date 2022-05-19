@@ -22,7 +22,7 @@ function LoanForm() {
   };
 
   return (
-    <form className="form--trx" onSubmit={handleSubmit}>
+    <form className="form--trx  form--trx--loan" onSubmit={handleSubmit}>
       <h4 className="form__heading">Loan Application</h4>
       <TextField
         className="form__input"

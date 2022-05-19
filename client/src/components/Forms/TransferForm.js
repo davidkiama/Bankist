@@ -22,7 +22,7 @@ function TransferForm() {
   };
 
   return (
-    <form className="form--trx" onSubmit={handleSubmit}>
+    <form className="form--trx form--trx--transfer" onSubmit={handleSubmit}>
       <h4 className="form__heading">Transfer form</h4>
       <TextField
         className="form__input"

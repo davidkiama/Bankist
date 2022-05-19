@@ -22,11 +22,23 @@ app.use("/transaction", transactionRoutes);
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
 
-mongoose
-  .connect(CONNECTION_URL)
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((error) => console.error(error));
+const connect = async () => {
+  try {
+    await mongoose.connect(CONNECTION_URL);
+  } catch (error) {
+    throw error;
+  }
+};
+
+mongoose.connection.on("disconnected", () => {
+  console.log("mongoDB disconnected");
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("mongoDB connected");
+});
+
+app.listen(PORT, () => {
+  connect();
+  console.log(`Server is running on port ${PORT}`);
+});
