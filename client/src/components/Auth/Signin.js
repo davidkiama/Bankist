@@ -57,7 +57,7 @@ function Signin() {
         <Grid container spacing={2} className="form--page  page1  active-form ">
           <Input name="email" type="email" label="Email" autoFocus handleChange={handleChange} />
           <Input name="idNumber" type="text" label="Id Number" handleChange={handleChange} />
-          <Input name="password" type="text" label="Password" handleChange={handleChange} />
+          <Input name="password" type="password" label="Password" handleChange={handleChange} />
 
           <button type="submit" className="btn form__btn">
             Signin
