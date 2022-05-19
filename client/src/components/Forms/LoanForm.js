@@ -30,6 +30,7 @@ function LoanForm() {
         label="Amount"
         variant="filled"
         type="number"
+        value={formData.amount === 0 ? "" : formData.amount}
         required
         onChange={(e) => setFormData({ ...formData, [e.target.name]: Number(e.target.value) })}
       />

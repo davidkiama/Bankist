@@ -31,6 +31,7 @@ function WithdrawForm() {
         label="Amount"
         variant="filled"
         type="number"
+        value={formData.amount === 0 ? "" : formData.amount}
         required
         onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
       />

@@ -30,6 +30,7 @@ function TransferForm() {
         label="Email"
         variant="filled"
         type="email"
+        value={formData.email === 0 ? "" : formData.email}
         required
         onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
       />
@@ -39,6 +40,7 @@ function TransferForm() {
         label="Amount"
         variant="filled"
         type="number"
+        value={formData.amount === 0 ? "" : formData.amount}
         required
         onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
       />

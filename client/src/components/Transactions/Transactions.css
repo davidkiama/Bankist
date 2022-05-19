@@ -4,6 +4,9 @@
   background-color: #fff;
   border-radius: 1rem;
   overflow: scroll;
+
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .transaction {
