@@ -5,7 +5,7 @@ dotenv.config();
 
 const auth = async (req, res, next) => {
   try {
-    const token = await req.headers.authorization.split(" ")[1];
+    const token = await req.headers.authorization?.split(" ")[1];
 
     const decodedData = jwt.verify(token, process.env.SECRET_KEY);
 
@@ -14,6 +14,7 @@ const auth = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
