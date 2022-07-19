@@ -21,7 +21,11 @@ export const deposit = async (req, res) => {
     user.currentBalance += amount; //Updating the user's balance
     await user.save();
 
-    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
+    return res.status(200).json({
+      currentBalance: user.currentBalance,
+      transactions: user.transactions,
+      message: `Confirmed. You have deposited Ksh ${newDepo.amount}`,
+    });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
@@ -29,6 +33,7 @@ export const deposit = async (req, res) => {
 
 export const withdraw = async (req, res) => {
   let { amount } = req.body;
+  amount = Number(amount);
 
   if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
 
@@ -36,9 +41,15 @@ export const withdraw = async (req, res) => {
   const user = await User.findById(req.userId);
   if (!user) return res.status(401).json({ message: "User does not exist" });
 
+  if (user.currentBalance < amount + amount * 0.1) {
+    return res
+      .status(401)
+      .json({ message: `You do not have sufficient funds to withdraw amount ${amount}.` });
+  }
+
   //Make the amount negative since its a withdrawal
   amount = -amount;
-  const destination = user.telephone;
+  const destination = user.email;
   const fee = amount * 0.1;
 
   const newWithdrawal = new Withdraw({ amount, destination, fee });
@@ -50,7 +61,11 @@ export const withdraw = async (req, res) => {
     user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
 
-    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
+    return res.status(200).json({
+      currentBalance: user.currentBalance,
+      transactions: user.transactions,
+      message: `Confirmed. You have withdrawn Ksh ${newWithdrawal.amount * -1}`,
+    });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
@@ -70,7 +85,7 @@ export const transfer = async (req, res) => {
 
   //ensure amount + fee requested is less than current balance
   if (amount * 1.1 > user.currentBalance)
-    return res.status(409).json({ message: "You don not have enough balance" });
+    return res.status(409).json({ message: `You don not have enough balance to transfer ${amount}` });
 
   amount = -amount; //negate figure since its a transfer
   const fee = amount * 0.1;
@@ -92,14 +107,19 @@ export const transfer = async (req, res) => {
     receiver.currentBalance = receiver.currentBalance + -amount;
     await receiver.save();
 
-    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
+    return res.status(200).json({
+      currentBalance: user.currentBalance,
+      transactions: user.transactions,
+      message: `Confirmed. You have transfered Ksh ${newTransfer.amount * -1} to ${newTransfer.receiver}`,
+    });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
 };
 
 export const loan = async (req, res) => {
-  const { amount } = req.body;
+  let { amount } = req.body;
+  amount = Number(amount);
 
   if (!req.userId) return res.status(401).json({ message: "Unauthorized" });
 
@@ -107,10 +127,10 @@ export const loan = async (req, res) => {
   const user = await User.findById(req.userId);
   if (!user) return res.status(401).json({ message: "User does not exist" });
 
-  const currentBalance = 20000;
-  // Check if amount requested is less than 60% of user's account balance
-  if (amount > currentBalance * 0.6)
-    return res.status(409).json({ message: "Can not process loan requested." });
+  // Check if amount requested is greater than 60% of user's account balance
+  if (amount > user.currentBalance * 0.6) {
+    return res.status(409).json({ message: `Denied. Can not approve loan of amount ${amount} requested.` });
+  }
 
   const fee = amount * -0.1; //fee is 10%
   const paybackPeriod = 60;
@@ -126,7 +146,11 @@ export const loan = async (req, res) => {
     user.currentBalance = user.currentBalance + amount + fee;
     await user.save();
 
-    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
+    return res.status(200).json({
+      currentBalance: user.currentBalance,
+      transactions: user.transactions,
+      message: `Confirmed. Your loan application of amount ${newLoan.amount} has been approved`,
+    });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
@@ -140,7 +164,7 @@ export const dashboardInfo = async (req, res) => {
     const user = await User.findById(req.userId);
     if (!user) return res.status(401).json({ message: "User does not exist" });
 
-    return res.status(201).json({ currentBalance: user.currentBalance, transactions: user.transactions });
+    return res.status(200).json({ currentBalance: user.currentBalance, transactions: user.transactions });
   } catch (error) {
     return res.status(409).json({ message: error });
   }
