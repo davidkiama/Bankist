@@ -1,0 +1,26 @@
+{
+  "name": "bankist-server",
+  "version": "1.0.0",
+  "description": "Bankist - Backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "David Kiama",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.8.0",
+    "mongoose": "^6.3.0",
+    "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "16.15.0"
+  }
+}
