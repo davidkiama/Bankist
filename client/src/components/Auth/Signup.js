@@ -39,10 +39,10 @@ function Signup({ onAddStatusCode, onAddMessage }) {
     onAddMessage(message);
 
     clearInputs();
-    setLoading(false);
 
     if (status === 200) {
       setTimeout(() => {
+        setLoading(false);
         navigate("/signin");
       }, 3000);
     }

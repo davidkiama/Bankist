@@ -15,9 +15,16 @@ function App() {
 
   const addStatusCode = (status) => {
     setStatusCode(status);
+    setTimeout(() => {
+      setStatusMsg("");
+    }, 2000);
   };
   const addMessage = (message) => {
     setStatusMsg(message);
+
+    setTimeout(() => {
+      setStatusMsg("");
+    }, 2000);
   };
 
   return (

@@ -35,12 +35,12 @@ function Signin({ onAddStatusCode, onAddMessage }) {
     onAddMessage(message);
 
     clearInputs();
-    setLoading(false);
 
     if (status === 200) {
       setTimeout(() => {
+        setLoading(false);
         navigate("/dashboard");
-      }, 5000);
+      }, 3000);
     }
   };
 
