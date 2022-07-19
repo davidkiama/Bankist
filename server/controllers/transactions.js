@@ -85,7 +85,7 @@ export const transfer = async (req, res) => {
 
   //ensure amount + fee requested is less than current balance
   if (amount * 1.1 > user.currentBalance)
-    return res.status(409).json({ message: "You don not have enough balance" });
+    return res.status(409).json({ message: `You don not have enough balance to transfer ${amount}` });
 
   amount = -amount; //negate figure since its a transfer
   const fee = amount * 0.1;

@@ -32,8 +32,8 @@ export const transfer = (body) => async (dispatch) => {
     dispatch({ type: "TRANSACT", data });
     return { status, message: data.message };
   } catch (error) {
-    console.log("**********************************************");
-    console.log(error);
+    const { status, data } = await error.response;
+    return { status, message: data.message };
   }
 };
 

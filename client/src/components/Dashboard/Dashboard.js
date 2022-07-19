@@ -31,7 +31,7 @@ function Dashboard({ onAddStatusCode, onAddMessage }) {
   return (
     <main className="dashboard">
       <div className="dashboard__header">
-        <h4>Welcome back, {userProfile?.result?.firstName} </h4>
+        <h4>Welcome back, {userProfile?.result?.fullName} </h4>
         <span>Kes {currentBalance} /=</span>
       </div>
 
