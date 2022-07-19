@@ -2,11 +2,11 @@ import * as api from "../api";
 
 export const deposit = (amount) => async (dispatch) => {
   try {
-    const { data } = await api.deposit(amount);
+    const { status, data } = await api.deposit(amount);
 
     dispatch({ type: "TRANSACT", data });
 
-    console.log(data);
+    return { status, message: data.message };
   } catch (error) {
     console.log("**********************************************");
     console.log(error);
@@ -15,33 +15,37 @@ export const deposit = (amount) => async (dispatch) => {
 
 export const withdraw = (amount) => async (dispatch) => {
   try {
-    const { data } = await api.withdraw(amount);
+    const { status, data } = await api.withdraw(amount);
 
     dispatch({ type: "TRANSACT", data });
+    return { status, message: data.message };
   } catch (error) {
-    console.log("**********************************************");
-    console.log(error);
+    const { status, data } = await error.response;
+    return { status, message: data.message };
   }
 };
 
 export const transfer = (body) => async (dispatch) => {
   try {
-    const { data } = await api.transfer(body);
+    const { status, data } = await api.transfer(body);
 
     dispatch({ type: "TRANSACT", data });
+    return { status, message: data.message };
   } catch (error) {
-    console.log("**********************************************");
-    console.log(error);
+    const { status, data } = await error.response;
+    return { status, message: data.message };
   }
 };
 
 export const loan = (amount) => async (dispatch) => {
   try {
-    const { data } = await api.loan(amount);
+    const { status, data } = await api.loan(amount);
 
     dispatch({ type: "TRANSACT", data });
+    return { status, message: data.message };
   } catch (error) {
-    console.log(error);
+    const { status, data } = await error.response;
+    return { status, message: data.message };
   }
 };
 

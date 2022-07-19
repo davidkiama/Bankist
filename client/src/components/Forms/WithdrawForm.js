@@ -5,15 +5,19 @@ import { TextField } from "@mui/material/";
 import { withdraw } from "../../actions/transactions";
 
 const initialState = { amount: 0 };
-function WithdrawForm() {
+function WithdrawForm({ onAddStatusCode, onAddMessage }) {
   const [formData, setFormData] = useState(initialState);
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(withdraw(formData));
+    const { status, message } = await dispatch(withdraw(formData));
+
+    // updating the message string to be displayed
+    onAddStatusCode(status);
+    onAddMessage(message);
 
     clearInputs();
   };

@@ -5,7 +5,7 @@ import { TextField } from "@mui/material/";
 import { loan } from "../../actions/transactions";
 
 const initialState = { amount: 0 };
-function LoanForm() {
+function LoanForm({ onAddStatusCode, onAddMessage }) {
   const [formData, setFormData] = useState(initialState);
 
   const dispatch = useDispatch();
@@ -14,9 +14,13 @@ function LoanForm() {
     setFormData(initialState);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loan(formData));
+    const { status, message } = await dispatch(loan(formData));
+
+    // updating the message string to be displayed
+    onAddStatusCode(status);
+    onAddMessage(message);
 
     clearInputs();
   };

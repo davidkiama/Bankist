@@ -12,7 +12,7 @@ import WithdrawForm from "../Forms/WithdrawForm";
 import { dashboard } from "../../actions/transactions";
 
 import "./Dashboard.css";
-function Dashboard() {
+function Dashboard({ onAddStatusCode, onAddMessage }) {
   const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem("profile")));
 
   const currentBalance = useSelector((state) => state.userAccount.currentBalance);
@@ -21,10 +21,17 @@ function Dashboard() {
 
   dispatch(dashboard());
 
+  const addStatusCode = (status) => {
+    onAddStatusCode(status);
+  };
+  const addMessage = (message) => {
+    onAddMessage(message);
+  };
+
   return (
     <main className="dashboard">
       <div className="dashboard__header">
-        <h4>Welcome back, {userProfile?.result?.firstName} </h4>
+        <h4>Welcome back, {userProfile?.result?.fullName} </h4>
         <span>Kes {currentBalance} /=</span>
       </div>
 
@@ -32,10 +39,10 @@ function Dashboard() {
         <Transactions />
 
         <div className="dashboard__forms">
-          <DepositForm />
-          <WithdrawForm />
-          <TransferForm />
-          <LoanForm />
+          <DepositForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
+          <WithdrawForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
+          <TransferForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
+          <LoanForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
         </div>
       </div>
     </main>

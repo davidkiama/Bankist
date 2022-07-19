@@ -5,7 +5,7 @@ import { TextField } from "@mui/material/";
 import { transfer } from "../../actions/transactions";
 
 const initialState = { amount: 0, email: "" };
-function TransferForm() {
+function TransferForm({ onAddStatusCode, onAddMessage }) {
   const [formData, setFormData] = useState(initialState);
 
   const dispatch = useDispatch();
@@ -14,10 +14,15 @@ function TransferForm() {
     setFormData(initialState);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(transfer(formData));
+    const { status, message } = await dispatch(transfer(formData));
+
+    // updating the message string to be displayed
+    onAddStatusCode(status);
+    onAddMessage(message);
+    
     clearInputs();
   };
 

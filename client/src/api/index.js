@@ -1,13 +1,15 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://bankist-backend.herokuapp.com/" });
-const profile = localStorage.getItem("profile");
+// const API = axios.create({ baseURL: "https://murmuring-eyrie-53592.herokuapp.com/" });
+const API = axios.create({ baseURL: "http://localhost:5000/" });
 
 API.interceptors.request.use((req) => {
+  const profile = localStorage.getItem("profile");
   if (profile) {
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`;
   }
 
+  req.headers["Access-Control-Allow-Origin"] = "*";
   return req;
 });
 
