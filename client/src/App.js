@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // custom components
@@ -10,15 +10,38 @@ import Signin from "./components/Auth/Signin";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
+  const [statusCode, setStatusCode] = useState("");
+  const [statusMsg, setStatusMsg] = useState("");
+
+  const addStatusCode = (status) => {
+    setStatusCode(status);
+  };
+  const addMessage = (message) => {
+    setStatusMsg(message);
+  };
+
   return (
     <BrowserRouter>
       <Header />
 
+      {statusMsg ? (
+        <span
+          className={`
+          ${statusCode === 200 && "status--ok"}  
+          ${statusCode !== 200 && "status--error"} status-msg`}
+        >
+          {statusMsg}
+        </span>
+      ) : null}
+
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="signin" element={<Signin />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="signup" element={<Signup onAddStatusCode={addStatusCode} onAddMessage={addMessage} />} />
+        <Route path="signin" element={<Signin onAddStatusCode={addStatusCode} onAddMessage={addMessage} />} />
+        <Route
+          path="dashboard"
+          element={<Dashboard onAddStatusCode={addStatusCode} onAddMessage={addMessage} />}
+        />
       </Routes>
     </BrowserRouter>
   );

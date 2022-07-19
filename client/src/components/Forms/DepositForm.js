@@ -7,16 +7,20 @@ import { deposit } from "../../actions/transactions";
 import "./Forms.css";
 
 const initialState = { amount: 0 };
-function DepositForm() {
+function DepositForm({ onAddStatusCode, onAddMessage }) {
   const [formData, setFormData] = useState(initialState);
 
   const dispatch = useDispatch();
 
   const clearInputs = () => setFormData(initialState);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(deposit(formData));
+    const { status, message } = await dispatch(deposit(formData));
+
+    // updating the message string to be displayed
+    onAddStatusCode(status);
+    onAddMessage(message);
 
     clearInputs();
   };

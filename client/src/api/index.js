@@ -10,7 +10,6 @@ API.interceptors.request.use((req) => {
   }
 
   req.headers["Access-Control-Allow-Origin"] = "*";
-  console.log(req.headers);
   return req;
 });
 

@@ -10,12 +10,9 @@ import "./Auth.css";
 import { signIn } from "../../actions/auth";
 
 const initialState = { email: "", idNumber: "", password: "" };
-function Signin() {
+function Signin({ onAddStatusCode, onAddMessage }) {
   const [userData, setUserData] = useState(initialState);
   const [loading, setLoading] = useState(false);
-
-  const [statusCode, setStatusCode] = useState("");
-  const [statusMsg, setStatusMsg] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,8 +31,8 @@ function Signin() {
     const { status, message } = await dispatch(signIn(userData));
 
     // updating the message string to be displayed
-    setStatusCode(status);
-    setStatusMsg(message);
+    onAddStatusCode(status);
+    onAddMessage(message);
 
     clearInputs();
     setLoading(false);
@@ -53,16 +50,6 @@ function Signin() {
         <LockOutlinedIcon />
       </Avatar>
       <h4 className="heading-4 box__heading">Signin</h4>
-
-      {statusMsg ? (
-        <span
-          className={`
-          ${statusCode === 200 && "status--ok"}  
-          ${statusCode !== 200 && "status--error"} status-msg`}
-        >
-          {statusMsg}
-        </span>
-      ) : null}
 
       <div className="box__main">
         {loading ? (

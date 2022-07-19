@@ -15,12 +15,9 @@ const initialState = {
   email: "",
 };
 
-function Signup() {
+function Signup({ onAddStatusCode, onAddMessage }) {
   const [userData, setUserData] = useState(initialState);
   const [loading, setLoading] = useState(false);
-
-  const [statusCode, setStatusCode] = useState("");
-  const [statusMsg, setStatusMsg] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,8 +35,8 @@ function Signup() {
     const { status, message } = await dispatch(signUp(userData));
 
     // updating the message string to be displayed
-    setStatusCode(status);
-    setStatusMsg(message);
+    onAddStatusCode(status);
+    onAddMessage(message);
 
     clearInputs();
     setLoading(false);
@@ -57,16 +54,6 @@ function Signup() {
         <LockOutlinedIcon />
       </Avatar>
       <h4 className="heading-4 box__heading">Signup</h4>
-
-      {statusMsg ? (
-        <span
-          className={`
-          ${statusCode === 200 && "status--ok"}  
-          ${statusCode !== 200 && "status--error"} status-msg`}
-        >
-          {statusMsg}
-        </span>
-      ) : null}
 
       <div className="box__main">
         {loading ? (
