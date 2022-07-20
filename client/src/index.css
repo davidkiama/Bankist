@@ -58,6 +58,12 @@ body {
 
 @media only screen and (max-width: 37.5em) {
   html {
-    font-size: 58%;
+    font-size: 55%;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .heading-1 {
+    font-size: 3rem;
   }
 }

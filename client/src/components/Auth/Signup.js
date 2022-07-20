@@ -43,7 +43,7 @@ function Signup({ onAddStatusCode, onAddMessage }) {
     if (status === 200) {
       setTimeout(() => {
         setLoading(false);
-        navigate("/signin");
+        navigate("/dashboard");
       }, 3000);
     }
   };

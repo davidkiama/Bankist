@@ -1,6 +1,6 @@
 .form--trx {
   background-color: #fff; /* #change later; */
-  width: 27rem;
+  width: 25rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   row-gap: 2rem;
 
   padding: 1rem 2rem;
-  height: 29rem;
+  /* height: 29rem; */
 }
 
 .form__heading {
@@ -18,10 +18,12 @@
 
 .form--trx input,
 .form--trx label {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  height: 2rem;
 }
 
 .form--trx button {
   width: fit-content;
   margin: 0 auto;
+  margin-bottom: 1rem;
 }
