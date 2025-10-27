@@ -31,20 +31,24 @@ function App() {
     <BrowserRouter>
       <Header />
 
-      {statusMsg ? (
-        <span
-          className={`
-          ${statusCode === 200 && "status--ok"}  
-          ${statusCode !== 200 && "status--error"} status-msg`}
-        >
-          {statusMsg}
-        </span>
-      ) : null}
+      <span
+        className={`
+          ${statusMsg && statusCode === 200 && "status--ok"}  
+          ${statusMsg && statusCode !== 200 && "status--error"} status-msg`}
+      >
+        {statusMsg || "\u00A0"}
+      </span>
 
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="signup" element={<Signup onAddStatusCode={addStatusCode} onAddMessage={addMessage} />} />
-        <Route path="signin" element={<Signin onAddStatusCode={addStatusCode} onAddMessage={addMessage} />} />
+        <Route
+          path="signup"
+          element={<Signup onAddStatusCode={addStatusCode} onAddMessage={addMessage} />}
+        />
+        <Route
+          path="signin"
+          element={<Signin onAddStatusCode={addStatusCode} onAddMessage={addMessage} />}
+        />
         <Route
           path="dashboard"
           element={<Dashboard onAddStatusCode={addStatusCode} onAddMessage={addMessage} />}

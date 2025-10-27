@@ -54,13 +54,23 @@
   text-align: center;
 }
 
+.status-msg {
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+  min-height: 2.2rem; /* reserve vertical space */
+  line-height: 2.2rem;
+
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
 .status--error {
   background-color: rgba(255, 0, 0, 0.692);
-  padding: 0.5rem;
 }
 
 .status--ok {
-  padding: 0.5rem;
   background-color: rgba(0, 128, 0, 0.692);
 }
 
