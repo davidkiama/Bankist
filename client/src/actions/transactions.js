@@ -1,15 +1,39 @@
 import * as api from "../api";
 
+// export const deposit = (amount) => async (dispatch) => {
+//   try {
+//     const { status, data } = await api.deposit(amount);
+
+//     dispatch({ type: "TRANSACT", data });
+
+//     return { status, message: data.message };
+//   } catch (error) {
+//     console.log("********************************************** deposit");
+//     console.log(error);
+//   }
+// };
+
 export const deposit = (amount) => async (dispatch) => {
   try {
+    // Make request to your backend API
     const { status, data } = await api.deposit(amount);
 
+    // If backend returns the OxaPay payment URL
+    if (data?.paymentUrl) {
+      // Open in a new browser tab or window
+      window.open(data.paymentUrl, "_blank");
+    }
+
+    // Dispatch to store if needed
     dispatch({ type: "TRANSACT", data });
 
+    // Return response for optional handling
     return { status, message: data.message };
   } catch (error) {
-    console.log("********************************************** deposit");
-    console.log(error);
+    console.error("********************************************** deposit");
+    console.error(error);
+
+    return { status: 500, message: "Deposit failed" };
   }
 };
 
