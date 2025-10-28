@@ -45,9 +45,9 @@ function Header() {
               Dashboard
             </Link>
 
-            {/* <Link to="dashboard" className="btn header__btn">
-              Add funds
-            </Link> */}
+            <Link to="dashboard" className="btn header__btn">
+              &#43; Add crypto
+            </Link>
 
             <Link to="profile" className="btn header__btn">
               Profile
