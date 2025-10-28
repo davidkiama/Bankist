@@ -47,10 +47,6 @@ export const signIn = async (req, res) => {
     if (!correctPassword) return res.status(404).json({ message: "Invalid Password." });
 
     //generate token
-    console.log(
-      "Generate token",
-      jwt.sign({ email, id: existingUser._id }, SECRET_KEY, { expiresIn: "1h" })
-    );
     const token = jwt.sign({ email, id: existingUser._id }, SECRET_KEY, { expiresIn: "1h" });
 
     // if all goes well return user and token
