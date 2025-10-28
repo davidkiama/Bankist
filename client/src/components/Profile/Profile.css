@@ -1,0 +1,39 @@
+.profile {
+}
+
+.profile__container {
+  height: 40rem;
+  width: 60rem;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: 3rem;
+  margin-bottom: 3rem;
+  background-color: #fff;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 4px 7px 0 rgb(0, 0, 0, 0.6);
+}
+
+.profile__slide {
+  display: flex;
+  align-items: center;
+}
+
+.profile__slide:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.profile__slide img {
+  width: 4rem;
+  height: auto;
+  margin: 2rem;
+}
+
+.profile__slide h4 {
+  font-size: 2.2rem;
+  font-weight: 300;
+}

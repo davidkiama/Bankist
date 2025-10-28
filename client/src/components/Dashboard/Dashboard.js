@@ -41,8 +41,8 @@ function Dashboard({ onAddStatusCode, onAddMessage }) {
         <div className="dashboard__forms">
           <DepositForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
           <WithdrawForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
-          <TransferForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
           <LoanForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
+          <TransferForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
         </div>
       </div>
     </main>

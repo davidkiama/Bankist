@@ -11,6 +11,8 @@ function Profile({ onAddStatusCode, onAddMessage }) {
 
   const currentBalance = useSelector((state) => state.userAccount.currentBalance);
 
+  const transactions = useSelector((state) => state.userAccount.transactions);
+  const transactionsCount = transactions.length;
   const dispatch = useDispatch();
 
   dispatch(profile());
@@ -21,10 +23,26 @@ function Profile({ onAddStatusCode, onAddMessage }) {
 
   return (
     <main className="profile">
-      <div className="profile__header">
-        <h4>Full name : {userProfile?.fullName} </h4>
-        <h4>Email : {userProfile?.email} </h4>
-        <span>Current balance : {currentBalance} /=</span>
+      <div className="profile__container">
+        <div className="profile__slide">
+          <img src="/svg/profile.svg" alt="Fullname" />
+          <h4>Full name : {userProfile?.fullName} </h4>
+        </div>
+
+        <div className="profile__slide">
+          <img src="/svg/message.svg" alt="Email" />
+          <h4>Email : {userProfile?.email} </h4>
+        </div>
+
+        <div className="profile__slide">
+          <img src="/svg/dollar.svg" alt="Balance" />
+          <h4> Current balance : {currentBalance} /=</h4>
+        </div>
+
+        <div className="profile__slide">
+          <img src="/svg/transactions.svg" alt="Transaction" />
+          <h4> Transactions : {transactionsCount} </h4>
+        </div>
       </div>
     </main>
   );

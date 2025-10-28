@@ -1,19 +1,19 @@
 .form--trx {
   background-color: #fff; /* #change later; */
-  width: 25rem;
+  width: 27rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   row-gap: 2rem;
 
-  padding: 1rem 2rem;
+  padding: 3rem 4rem;
   /* height: 29rem; */
 }
 
 .form__heading {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .form--trx input,

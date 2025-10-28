@@ -19,6 +19,7 @@ body {
 
 :root {
   --color-grey: #f3f3f3;
+  --color-grey-dark: #f3f3f374;
   --color-white: #fff;
   --color-green-1: #9be15d;
   --color-green-2: #39b385;
