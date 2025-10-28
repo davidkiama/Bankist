@@ -8,7 +8,7 @@ export const deposit = (amount) => async (dispatch) => {
 
     return { status, message: data.message };
   } catch (error) {
-    console.log("**********************************************");
+    console.log("********************************************** deposit");
     console.log(error);
   }
 };
@@ -56,7 +56,7 @@ export const dashboard = () => async (dispatch) => {
     // update userAccount state when one logs in
     dispatch({ type: "TRANSACT", data });
   } catch (error) {
-    console.log("**********************************************");
+    console.log("********************************************** transact");
     console.log(error);
   }
 };

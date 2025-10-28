@@ -21,7 +21,9 @@ export const signUp = async (req, res) => {
 
     //create user and token
     const result = await User.create({ fullName, password: hashedPassword, email });
-    const token = jwt.sign({ email: result.email, id: result._id }, SECRET_KEY, { expiresIn: "1h" });
+    const token = jwt.sign({ email: result.email, id: result._id }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
 
     // return the token and user created
     res.status(200).json({ result, token, message: "Account created successfuly." });
@@ -45,6 +47,10 @@ export const signIn = async (req, res) => {
     if (!correctPassword) return res.status(404).json({ message: "Invalid Password." });
 
     //generate token
+    console.log(
+      "Generate token",
+      jwt.sign({ email, id: existingUser._id }, SECRET_KEY, { expiresIn: "1h" })
+    );
     const token = jwt.sign({ email, id: existingUser._id }, SECRET_KEY, { expiresIn: "1h" });
 
     // if all goes well return user and token

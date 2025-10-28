@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import Signup from "./components/Auth/Signup";
 import Signin from "./components/Auth/Signin";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [statusCode, setStatusCode] = useState("");
@@ -52,6 +53,10 @@ function App() {
         <Route
           path="dashboard"
           element={<Dashboard onAddStatusCode={addStatusCode} onAddMessage={addMessage} />}
+        />
+        <Route
+          path="profile"
+          element={<Profile onAddStatusCode={addStatusCode} onAddMessage={addMessage} />}
         />
       </Routes>
     </BrowserRouter>

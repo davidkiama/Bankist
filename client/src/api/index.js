@@ -25,3 +25,5 @@ export const loan = (amount) => API.post("transaction/loan", amount);
 
 // Dashboard info
 export const dashboardInfo = () => API.get("transaction/dashboard");
+
+export const profile = () => API.get("utilities/profile");
