@@ -19,6 +19,7 @@ body {
 
 :root {
   --color-grey: #f3f3f3;
+  --color-grey-dark: #f3f3f374;
   --color-white: #fff;
   --color-green-1: #9be15d;
   --color-green-2: #39b385;
@@ -32,7 +33,7 @@ body {
 #root {
   background-color: var(--color-grey);
   min-height: 100vh;
-  padding: 1rem;
+  padding: 3rem;
 }
 
 /* Components */
@@ -58,6 +59,12 @@ body {
 
 @media only screen and (max-width: 37.5em) {
   html {
-    font-size: 58%;
+    font-size: 55%;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .heading-1 {
+    font-size: 3rem;
   }
 }

@@ -34,3 +34,24 @@
   column-gap: 2rem;
   row-gap: 4rem;
 }
+
+@media only screen and (max-width: 50em) {
+  .dashboard__main {
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 4rem;
+  }
+
+  .dashboard__forms {
+    width: 100%;
+  }
+
+  .dashboard__header h4 {
+    font-weight: 500;
+    font-size: 2rem;
+  }
+
+  .dashboard__header span {
+    font-size: 2rem;
+  }
+}

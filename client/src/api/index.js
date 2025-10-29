@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API = axios.create({ baseURL: "https://murmuring-eyrie-53592.herokuapp.com/" });
-const API = axios.create({ baseURL: "http://localhost:5000/" });
+const API = axios.create({ baseURL: "https://bankist-daf8fd77839c.herokuapp.com/" });
+// const API = axios.create({ baseURL: "http://localhost:4000/" });
 
 API.interceptors.request.use((req) => {
   const profile = localStorage.getItem("profile");
@@ -25,3 +25,5 @@ export const loan = (amount) => API.post("transaction/loan", amount);
 
 // Dashboard info
 export const dashboardInfo = () => API.get("transaction/dashboard");
+
+export const profile = () => API.get("utilities/profile");

@@ -31,7 +31,7 @@ function Dashboard({ onAddStatusCode, onAddMessage }) {
   return (
     <main className="dashboard">
       <div className="dashboard__header">
-        <h4>Welcome back, {userProfile?.result?.fullName} </h4>
+        <h4>Welcome back, {userProfile?.fullName} </h4>
         <span>Kes {currentBalance} /=</span>
       </div>
 
@@ -41,8 +41,8 @@ function Dashboard({ onAddStatusCode, onAddMessage }) {
         <div className="dashboard__forms">
           <DepositForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
           <WithdrawForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
-          <TransferForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
           <LoanForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
+          <TransferForm onAddStatusCode={addStatusCode} onAddMessage={addMessage} />
         </div>
       </div>
     </main>

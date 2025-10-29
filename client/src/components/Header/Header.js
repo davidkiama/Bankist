@@ -45,6 +45,14 @@ function Header() {
               Dashboard
             </Link>
 
+            <Link to="dashboard" className="btn header__btn">
+              &#43; Add crypto
+            </Link>
+
+            <Link to="profile" className="btn header__btn">
+              Profile
+            </Link>
+
             <button className="btn btn--logout" onClick={logout}>
               <img src="/svg/shutdown.svg" alt="Logout" />
               Logout

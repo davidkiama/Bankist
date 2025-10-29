@@ -7,21 +7,23 @@
   justify-content: space-around;
   row-gap: 2rem;
 
-  padding: 1rem 2rem;
-  height: 29rem;
+  padding: 3rem 4rem;
+  /* height: 29rem; */
 }
 
 .form__heading {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .form--trx input,
 .form--trx label {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  height: 2rem;
 }
 
 .form--trx button {
   width: fit-content;
   margin: 0 auto;
+  margin-bottom: 1rem;
 }

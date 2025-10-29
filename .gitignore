@@ -1,4 +1,6 @@
 *node_modules/
 .env
 
-build/
+*build/
+
+*DS_Store
