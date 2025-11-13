@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API = axios.create({ baseURL: "https://bankist-backend.herokuapp.com/" });
-const API = axios.create({ baseURL: "http://localhost:4000/" });
+const API = axios.create({ baseURL: "https://bankist-api-6fbc.onrender.com/" });
+// const API = axios.create({ baseURL: "http://localhost:4000/" });
 
 API.interceptors.request.use((req) => {
   const profile = localStorage.getItem("profile");
